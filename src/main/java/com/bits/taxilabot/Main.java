@@ -9,6 +9,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
+        com.bits.taxilabot.util.DotenvLoader.loadEnv();
         logger.info("Starting BITS Taxila Notification Bot");
         com.bits.taxilabot.util.TelegramUtil.sendTelegramMessage("🚀 BITS Taxila Notification Bot started and is now running.");
         NotificationChecker checker = new NotificationChecker();
