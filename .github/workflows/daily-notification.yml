@@ -8,14 +8,15 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
-    env:
-      TAXILA_USERNAME: ${{ secrets.TAXILA_USERNAME }}
-      TAXILA_PASSWORD: ${{ secrets.TAXILA_PASSWORD }}
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Create .env file from secrets
+        run: |
+          echo "TAXILA_USERNAME=${{ secrets.TAXILA_USERNAME }}" >> .env
+          echo "TAXILA_PASSWORD=${{ secrets.TAXILA_PASSWORD }}" >> .env
+          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+          echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
